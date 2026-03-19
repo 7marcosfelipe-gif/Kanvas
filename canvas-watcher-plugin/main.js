@@ -459,13 +459,51 @@ const DagLayout = (() => {
       }
     }
 
+    // ── Build inter-group dependency graph ───────────────────────────────────
+    // Used both to order the greedy coloring and to order columns left→right.
+    const groupInc = {};
+    for (const t of tasks) {
+      const gid = membership[t.id];
+      if (!gid) continue;
+      for (const pred of (incoming[t.id] || [])) {
+        const predGid = membership[pred];
+        if (predGid && predGid !== gid) (groupInc[gid] || (groupInc[gid] = new Set())).add(predGid);
+      }
+    }
+
+    // Topological sort of groups: upstream groups come first so that the greedy
+    // coloring below assigns them a color first, letting downstream groups
+    // share that color (same column) when their depth ranges don't conflict.
+    {
+      const inDeg = Object.fromEntries(groupOrder.map(g => [g, (groupInc[g] || new Set()).size]));
+      const children = {};
+      for (const gid of groupOrder)
+        for (const pred of (groupInc[gid] || []))
+          (children[pred] || (children[pred] = [])).push(gid);
+      const queue = groupOrder.filter(g => inDeg[g] === 0);
+      const topo = [];
+      while (queue.length) {
+        const gid = queue.shift();
+        topo.push(gid);
+        for (const child of (children[gid] || []))
+          if (--inDeg[child] === 0) queue.push(child);
+      }
+      if (topo.length === groupOrder.length) groupOrder.splice(0, groupOrder.length, ...topo);
+    }
+
     const groupColor = {};
     for (const gid of groupOrder) {
       const used = new Set([...(conflicts[gid] || [])].filter(nb => nb in groupColor).map(nb => groupColor[nb]));
-      let color = 0;
-      while (used.has(color)) color++;
+      // Prefer an upstream group's color so dependent groups share a column when possible.
+      let color = null;
+      for (const predGid of (groupInc[gid] || [])) {
+        const c = groupColor[predGid];
+        if (c != null && !used.has(c)) { color = c; break; }
+      }
+      if (color == null) { color = 0; while (used.has(color)) color++; }
       groupColor[gid] = color;
     }
+
 
     const numCols      = groupOrder.length ? Math.max(...Object.values(groupColor)) + 1 : 0;
     const UNGROUPED    = numCols;
