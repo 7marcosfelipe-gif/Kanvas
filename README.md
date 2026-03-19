@@ -186,8 +186,8 @@ Or run standalone (requires Node.js): `node canvas-watcher.js` (watch mode) or `
 
 The plugin adds two layout buttons to the Obsidian canvas toolbar:
 
-- **V** — arrange cards top-to-bottom by dependency depth (vertical DAG layout)
-- **H** — arrange cards left-to-right by dependency depth (horizontal DAG layout)
+- **Vertical layout** (lines + down arrow) — arrange cards top-to-bottom by dependency depth
+- **Horizontal layout** (lines + right arrow) — arrange cards left-to-right by dependency depth
 
 Both buttons lay out tasks in topological order, group related cards together, resolve depth conflicts across groups via graph coloring, and apply transitive reduction so only direct dependency arrows are shown.
 
