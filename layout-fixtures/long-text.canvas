@@ -1,0 +1,23 @@
+{
+	"nodes":[
+		{"id":"canvas-errors","type":"text","text":"## Errors\n✓ None","x":-540,"y":-750,"width":380,"height":200,"color":"1"},
+		{"id":"legend","type":"text","text":"## Legend\n🔴 **Red** = To Do (ready)\n⬜ **Gray** = Blocked\n🟠 **Orange** = Doing\n🔵 **Cyan** = Ready to review\n🟢 **Green** = Done\n🟣 **Purple** = Proposed by agent","x":-540,"y":-310,"width":380,"height":230,"color":"0"},
+		{"id":"canvas-warnings","type":"text","text":"## Warnings\n✓ None","x":-540,"y":-530,"width":380,"height":200,"color":"3"},
+		{"id":"group-intake","type":"group","x":20,"y":40,"width":540,"height":260,"label":"Intake"},
+		{"id":"group-analys","type":"group","x":20,"y":370,"width":540,"height":920,"label":"Analysis"},
+		{"id":"group-delive","type":"group","x":20,"y":1360,"width":540,"height":590,"label":"Delivery"},
+		{"id":"a3c636ad","type":"text","text":"## IN-01 Capture stakeholder expectations for dependency-aware board organization\nWrite down what makes a planning board feel readable when dependencies, long task descriptions, and multiple work lanes all compete for space at the same time.","x":80,"y":80,"width":420,"height":180,"color":"6"},
+		{"id":"aea0def7","type":"text","text":"## AN-01 Document text measurement heuristics for multi-line planning cards\nDescribe how the layout engine should estimate wrapped text height when the canvas contains longer-than-usual titles, sentence-length descriptions, and deliberately uneven card content.","x":80,"y":410,"width":420,"height":180,"color":"6"},
+		{"id":"783cad9f","type":"text","text":"## AN-02 Prototype sizing rules that avoid internal scrolling on task cards\nExplore card width and height bounds that keep the entire task visible without making the board so wide that cross-group relationships become hard to follow.","x":80,"y":740,"width":420,"height":180,"color":"6"},
+		{"id":"54c7b3f7","type":"text","text":"## AN-03 Evaluate whether portrait-oriented cards remain readable under dense board conditions\nCheck if cards that stay near a three-to-four aspect ratio still look intentional once there are many paragraphs, long labels, and several dependency chains sharing the same screen region.","x":80,"y":1070,"width":420,"height":180,"color":"6"},
+		{"id":"60166eee","type":"text","text":"## DE-01 Review layout readability with narrative-heavy cards and dense descriptions\nInspect whether the board can still be scanned quickly when every task contains more explanation than the short examples normally used in the repository.","x":80,"y":1400,"width":420,"height":180,"color":"6"},
+		{"id":"43c4a45e","type":"text","text":"## DE-02 Summarize tradeoffs between wrapping limits, width ceilings, and board height growth\nCapture the practical compromises between making cards wider, letting them grow taller, and preserving enough whitespace for dependency arrows to remain understandable.","x":80,"y":1730,"width":420,"height":180,"color":"6"}
+	],
+	"edges":[
+		{"id":"edge-001","fromNode":"a3c636ad","fromSide":"bottom","toNode":"aea0def7","toSide":"top"},
+		{"id":"edge-002","fromNode":"aea0def7","fromSide":"bottom","toNode":"783cad9f","toSide":"top"},
+		{"id":"edge-003","fromNode":"783cad9f","fromSide":"bottom","toNode":"54c7b3f7","toSide":"top"},
+		{"id":"edge-004","fromNode":"54c7b3f7","fromSide":"bottom","toNode":"60166eee","toSide":"top"},
+		{"id":"edge-005","fromNode":"60166eee","fromSide":"bottom","toNode":"43c4a45e","toSide":"top"}
+	]
+}

@@ -1,0 +1,703 @@
+{
+	"nodes": [
+		{
+			"id": "group-backend",
+			"type": "group",
+			"x": 1430,
+			"y": 1300,
+			"width": 2615,
+			"height": 510,
+			"label": "Backend"
+		},
+		{
+			"id": "group-frontend",
+			"type": "group",
+			"x": 1430,
+			"y": 1930,
+			"width": 3320,
+			"height": 260,
+			"label": "Frontend"
+		},
+		{
+			"id": "group-testing",
+			"type": "group",
+			"x": 2135,
+			"y": 670,
+			"width": 4025,
+			"height": 260,
+			"label": "Testing"
+		},
+		{
+			"id": "group-analytics",
+			"type": "group",
+			"x": 20,
+			"y": 40,
+			"width": 2615,
+			"height": 510,
+			"label": "Analytics"
+		},
+		{
+			"id": "group-deploy",
+			"type": "group",
+			"x": 4250,
+			"y": 40,
+			"width": 2615,
+			"height": 260,
+			"label": "Deployment"
+		},
+		{
+			"id": "group-docs",
+			"type": "group",
+			"x": 20,
+			"y": 670,
+			"width": 1910,
+			"height": 510,
+			"label": "Documentation"
+		},
+		{
+			"id": "group-infra",
+			"type": "group",
+			"x": 20,
+			"y": 1300,
+			"width": 1205,
+			"height": 510,
+			"label": "Infrastructure"
+		},
+		{
+			"id": "xaji0y6d",
+			"type": "text",
+			"text": "## INF-01 Provision base VMs\n\nSet up virtual machines and networking.",
+			"x": 80,
+			"y": 1340,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "pbhsahxt",
+			"type": "text",
+			"text": "## INF-02 Configure DNS and load balancer\n\nRegister domains, set up LB rules.",
+			"x": 80,
+			"y": 1590,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "hv3a3zmf",
+			"type": "text",
+			"text": "## INF-03 Bootstrap secrets manager\n\nVault init, policies, auth backends.",
+			"x": 785,
+			"y": 1340,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "8mdd4v30",
+			"type": "text",
+			"text": "## BE-01 Scaffold API service\n\nGenerate OpenAPI stubs, wire DI.",
+			"x": 1490,
+			"y": 1340,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "t9nt3w5u",
+			"type": "text",
+			"text": "## BE-02 Implement auth endpoints\n\nJWT issue, refresh, revoke flows.",
+			"x": 2195,
+			"y": 1340,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "legend",
+			"type": "text",
+			"text": "## Legend\n🔴 **Red** = To Do (ready)\n⬛ **Gray** = Blocked\n🟠 **Orange** = Doing\n🔵 **Cyan** = Ready to review\n🟢 **Green** = Done\n🟣 **Purple** = Proposed by agent",
+			"x": -540,
+			"y": -310,
+			"width": 380,
+			"height": 230,
+			"color": "6"
+		},
+		{
+			"id": "canvas-warnings",
+			"type": "text",
+			"text": "## Warnings\n✓ None",
+			"x": -540,
+			"y": -530,
+			"width": 380,
+			"height": 200,
+			"color": "3"
+		},
+		{
+			"id": "canvas-errors",
+			"type": "text",
+			"text": "## Errors\n✓ None",
+			"x": -540,
+			"y": -750,
+			"width": 380,
+			"height": 200,
+			"color": "1"
+		},
+		{
+			"id": "zbikcidk",
+			"type": "text",
+			"text": "## BE-03 Implement data CRUD\n\nREST handlers with DB transactions.",
+			"x": 2195,
+			"y": 1590,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "wnnhj7xv",
+			"type": "text",
+			"text": "## BE-04 Add rate limiting & caching\n\nRedis-backed throttle + cache layer.",
+			"x": 2900,
+			"y": 1340,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "g0fn9xuy",
+			"type": "text",
+			"text": "## BE-05 Write integration tests\n\nCover all happy and error paths.",
+			"x": 3605,
+			"y": 1340,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "41ibljh7",
+			"type": "text",
+			"text": "## FE-01 Bootstrap SPA shell\n\nVite + React + router setup.",
+			"x": 1490,
+			"y": 1970,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "5lxo6qji",
+			"type": "text",
+			"text": "## FE-02 Build auth UI\n\nLogin, logout, token refresh UI.",
+			"x": 2195,
+			"y": 1970,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "ujv6oh9s",
+			"type": "text",
+			"text": "## FE-03 Build data dashboard\n\nTables, charts, filter controls.",
+			"x": 2900,
+			"y": 1970,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "dbdw2pcn",
+			"type": "text",
+			"text": "## FE-04 Cross-browser testing\n\nPlaywright suite on Chrome/FF/Safari.",
+			"x": 3605,
+			"y": 1970,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "9t84azyt",
+			"type": "text",
+			"text": "## FE-05 Accessibility audit\n\nWCAG 2.1 AA automated + manual.",
+			"x": 4310,
+			"y": 1970,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "jxepq85j",
+			"type": "text",
+			"text": "## TE-01 Define test strategy\n\nScope, tooling, coverage targets.",
+			"x": 2195,
+			"y": 710,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "sg65kxvf",
+			"type": "text",
+			"text": "## TE-02 API contract tests\n\nPact broker for BE↔FE contracts.",
+			"x": 3605,
+			"y": 710,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "1t2tala7",
+			"type": "text",
+			"text": "## TE-03 E2E smoke suite\n\nCritical paths on staging env.",
+			"x": 4310,
+			"y": 710,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "53lc58dr",
+			"type": "text",
+			"text": "## TE-04 Performance baseline\n\nk6 load test, capture p50/p99.",
+			"x": 5015,
+			"y": 710,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "c11ertj5",
+			"type": "text",
+			"text": "## TE-05 Security scan\n\nOWASP ZAP + Trivy on images.",
+			"x": 5720,
+			"y": 710,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "pht0hl9x",
+			"type": "text",
+			"text": "## DP-01 Containerise services\n\nDockerfiles + compose for all svcs.",
+			"x": 4310,
+			"y": 80,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "pseimvih",
+			"type": "text",
+			"text": "## DP-02 Write Helm charts\n\nK8s manifests, values.yaml, secrets.",
+			"x": 5015,
+			"y": 80,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "cwi64ciy",
+			"type": "text",
+			"text": "## DP-03 CI pipeline\n\nGHA workflow: lint, test, build, push.",
+			"x": 5720,
+			"y": 80,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "he7ur23g",
+			"type": "text",
+			"text": "## DP-04 Canary rollout procedure\n\nArgo Rollouts config, analysis runs.",
+			"x": 6425,
+			"y": 80,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "dppq0y9d",
+			"type": "text",
+			"text": "## DO-01 Architecture decision records\n\nDocument key tech choices (ADRs).",
+			"x": 80,
+			"y": 710,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "om5igqpk",
+			"type": "text",
+			"text": "## DO-02 API reference docs\n\nOpenAPI → Redoc, hosted internally.",
+			"x": 785,
+			"y": 710,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "i7p5tb94",
+			"type": "text",
+			"text": "## DO-03 Runbook: on-call guide\n\nIncident playbooks, escalation paths.",
+			"x": 785,
+			"y": 960,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "874frhoc",
+			"type": "text",
+			"text": "## DO-04 Changelog & release notes\n\nKeep-a-changelog format, semver tags.",
+			"x": 1490,
+			"y": 710,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "n9j2qp89",
+			"type": "text",
+			"text": "## AN-01 Define KPI taxonomy\n\nMetric names, dimensions, owners.",
+			"x": 80,
+			"y": 80,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "uzfk8ut0",
+			"type": "text",
+			"text": "## AN-02 Instrument frontend events\n\nSegment.io calls on key user actions.",
+			"x": 785,
+			"y": 80,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "cvs4f8cg",
+			"type": "text",
+			"text": "## AN-03 Build data pipeline\n\nKafka → Flink → Clickhouse ETL.",
+			"x": 785,
+			"y": 330,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "vyie6ivw",
+			"type": "text",
+			"text": "## AN-04 Create dashboards\n\nGrafana boards: DAU, retention, perf.",
+			"x": 1490,
+			"y": 80,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "pvs7hzio",
+			"type": "text",
+			"text": "## AN-05 Alerting & anomaly rules\n\nPagerDuty integration, threshold alerts.",
+			"x": 2195,
+			"y": 80,
+			"width": 380,
+			"height": 180,
+			"color": "6"
+		}
+	],
+	"edges": [
+		{
+			"id": "eykl1cq99",
+			"fromNode": "xaji0y6d",
+			"fromSide": "right",
+			"toNode": "hv3a3zmf",
+			"toSide": "left"
+		},
+		{
+			"id": "echj755nf",
+			"fromNode": "pbhsahxt",
+			"fromSide": "right",
+			"toNode": "hv3a3zmf",
+			"toSide": "left"
+		},
+		{
+			"id": "ex7eedtjv",
+			"fromNode": "hv3a3zmf",
+			"fromSide": "right",
+			"toNode": "8mdd4v30",
+			"toSide": "left"
+		},
+		{
+			"id": "epja1wj0t",
+			"fromNode": "hv3a3zmf",
+			"fromSide": "right",
+			"toNode": "41ibljh7",
+			"toSide": "left"
+		},
+		{
+			"id": "epac56t4u",
+			"fromNode": "8mdd4v30",
+			"fromSide": "right",
+			"toNode": "t9nt3w5u",
+			"toSide": "left"
+		},
+		{
+			"id": "efel6246h",
+			"fromNode": "8mdd4v30",
+			"fromSide": "right",
+			"toNode": "zbikcidk",
+			"toSide": "left"
+		},
+		{
+			"id": "eid25owf7",
+			"fromNode": "t9nt3w5u",
+			"fromSide": "right",
+			"toNode": "wnnhj7xv",
+			"toSide": "left"
+		},
+		{
+			"id": "e5935a0l7",
+			"fromNode": "zbikcidk",
+			"fromSide": "right",
+			"toNode": "wnnhj7xv",
+			"toSide": "left"
+		},
+		{
+			"id": "e253j2d54",
+			"fromNode": "wnnhj7xv",
+			"fromSide": "right",
+			"toNode": "g0fn9xuy",
+			"toSide": "left"
+		},
+		{
+			"id": "ei3qk2iag",
+			"fromNode": "41ibljh7",
+			"fromSide": "right",
+			"toNode": "5lxo6qji",
+			"toSide": "left"
+		},
+		{
+			"id": "el58kxo9t",
+			"fromNode": "41ibljh7",
+			"fromSide": "right",
+			"toNode": "ujv6oh9s",
+			"toSide": "left"
+		},
+		{
+			"id": "e7e8g8jdp",
+			"fromNode": "5lxo6qji",
+			"fromSide": "right",
+			"toNode": "dbdw2pcn",
+			"toSide": "left"
+		},
+		{
+			"id": "e0lvsnujz",
+			"fromNode": "ujv6oh9s",
+			"fromSide": "right",
+			"toNode": "dbdw2pcn",
+			"toSide": "left"
+		},
+		{
+			"id": "ea7tz0ync",
+			"fromNode": "dbdw2pcn",
+			"fromSide": "right",
+			"toNode": "9t84azyt",
+			"toSide": "left"
+		},
+		{
+			"id": "exll4zklo",
+			"fromNode": "t9nt3w5u",
+			"fromSide": "right",
+			"toNode": "ujv6oh9s",
+			"toSide": "left"
+		},
+		{
+			"id": "eokep7y6w",
+			"fromNode": "8mdd4v30",
+			"fromSide": "right",
+			"toNode": "jxepq85j",
+			"toSide": "left"
+		},
+		{
+			"id": "ektakpuxq",
+			"fromNode": "wnnhj7xv",
+			"fromSide": "right",
+			"toNode": "sg65kxvf",
+			"toSide": "left"
+		},
+		{
+			"id": "ephr62gds",
+			"fromNode": "g0fn9xuy",
+			"fromSide": "right",
+			"toNode": "1t2tala7",
+			"toSide": "left"
+		},
+		{
+			"id": "ewm31yiha",
+			"fromNode": "41ibljh7",
+			"fromSide": "right",
+			"toNode": "jxepq85j",
+			"toSide": "left"
+		},
+		{
+			"id": "eir4cowgz",
+			"fromNode": "dbdw2pcn",
+			"fromSide": "right",
+			"toNode": "1t2tala7",
+			"toSide": "left"
+		},
+		{
+			"id": "erixa11dp",
+			"fromNode": "9t84azyt",
+			"fromSide": "right",
+			"toNode": "53lc58dr",
+			"toSide": "left"
+		},
+		{
+			"id": "eg8sbi4q2",
+			"fromNode": "jxepq85j",
+			"fromSide": "right",
+			"toNode": "sg65kxvf",
+			"toSide": "left"
+		},
+		{
+			"id": "ey9v86wzs",
+			"fromNode": "jxepq85j",
+			"fromSide": "right",
+			"toNode": "1t2tala7",
+			"toSide": "left"
+		},
+		{
+			"id": "e3t60rjiw",
+			"fromNode": "sg65kxvf",
+			"fromSide": "right",
+			"toNode": "53lc58dr",
+			"toSide": "left"
+		},
+		{
+			"id": "e1swjckjl",
+			"fromNode": "1t2tala7",
+			"fromSide": "right",
+			"toNode": "53lc58dr",
+			"toSide": "left"
+		},
+		{
+			"id": "eteiyzcot",
+			"fromNode": "53lc58dr",
+			"fromSide": "right",
+			"toNode": "c11ertj5",
+			"toSide": "left"
+		},
+		{
+			"id": "eohp6vz41",
+			"fromNode": "wnnhj7xv",
+			"fromSide": "right",
+			"toNode": "pht0hl9x",
+			"toSide": "left"
+		},
+		{
+			"id": "enam148p0",
+			"fromNode": "g0fn9xuy",
+			"fromSide": "right",
+			"toNode": "cwi64ciy",
+			"toSide": "left"
+		},
+		{
+			"id": "etvhhpbmy",
+			"fromNode": "dbdw2pcn",
+			"fromSide": "right",
+			"toNode": "pht0hl9x",
+			"toSide": "left"
+		},
+		{
+			"id": "eofqewaou",
+			"fromNode": "pht0hl9x",
+			"fromSide": "right",
+			"toNode": "pseimvih",
+			"toSide": "left"
+		},
+		{
+			"id": "eaxeqbnhl",
+			"fromNode": "pseimvih",
+			"fromSide": "right",
+			"toNode": "cwi64ciy",
+			"toSide": "left"
+		},
+		{
+			"id": "e1n13jcat",
+			"fromNode": "cwi64ciy",
+			"fromSide": "right",
+			"toNode": "he7ur23g",
+			"toSide": "left"
+		},
+		{
+			"id": "e9mx2x18h",
+			"fromNode": "c11ertj5",
+			"fromSide": "right",
+			"toNode": "he7ur23g",
+			"toSide": "left"
+		},
+		{
+			"id": "eafeyuhz1",
+			"fromNode": "dppq0y9d",
+			"fromSide": "right",
+			"toNode": "om5igqpk",
+			"toSide": "left"
+		},
+		{
+			"id": "egv0e38da",
+			"fromNode": "dppq0y9d",
+			"fromSide": "right",
+			"toNode": "i7p5tb94",
+			"toSide": "left"
+		},
+		{
+			"id": "ely8ozcyw",
+			"fromNode": "om5igqpk",
+			"fromSide": "right",
+			"toNode": "874frhoc",
+			"toSide": "left"
+		},
+		{
+			"id": "ed14ve92m",
+			"fromNode": "i7p5tb94",
+			"fromSide": "right",
+			"toNode": "874frhoc",
+			"toSide": "left"
+		},
+		{
+			"id": "epnsm43d8",
+			"fromNode": "n9j2qp89",
+			"fromSide": "right",
+			"toNode": "uzfk8ut0",
+			"toSide": "left"
+		},
+		{
+			"id": "ew3zp08j3",
+			"fromNode": "n9j2qp89",
+			"fromSide": "right",
+			"toNode": "cvs4f8cg",
+			"toSide": "left"
+		},
+		{
+			"id": "etrp0j43d",
+			"fromNode": "uzfk8ut0",
+			"fromSide": "right",
+			"toNode": "vyie6ivw",
+			"toSide": "left"
+		},
+		{
+			"id": "e5iqvnb4g",
+			"fromNode": "cvs4f8cg",
+			"fromSide": "right",
+			"toNode": "vyie6ivw",
+			"toSide": "left"
+		},
+		{
+			"id": "eh2m5zja8",
+			"fromNode": "vyie6ivw",
+			"fromSide": "right",
+			"toNode": "pvs7hzio",
+			"toSide": "left"
+		}
+	]
+}

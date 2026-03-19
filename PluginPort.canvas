@@ -1,0 +1,18 @@
+{
+	"nodes":[
+		{"id":"group-plugin","type":"group","x":690,"y":40,"width":1880,"height":260,"label":"Plugin Integration"},
+		{"id":"group-algori","type":"group","x":20,"y":40,"width":540,"height":260,"label":"Algorithm Core"},
+		{"id":"canvas-errors","type":"text","text":"## Errors\n✓ None","x":-540,"y":-750,"width":380,"height":200,"color":"1"},
+		{"id":"legend","type":"text","text":"## Legend\n🔴 **Red** = To Do (ready)\n⬜ **Gray** = Blocked\n🟠 **Orange** = Doing\n🔵 **Cyan** = Ready to review\n🟢 **Green** = Done\n🟣 **Purple** = Proposed by agent","x":-540,"y":-310,"width":380,"height":230,"color":"0"},
+		{"id":"canvas-warnings","type":"text","text":"## Warnings\n✓ None","x":-540,"y":-530,"width":380,"height":200,"color":"3"},
+		{"id":"554d0f64","type":"text","text":"## AC-01 Port layout algorithm to JS\nImplement the entire DagLayout IIFE inside main.js. Port all pure functions from organize-dag-groups.py: task identification, group membership (geometric containment), graph building, depth computation (Kahn BFS), transitive reduction, uniform sizing, group conflict coloring (greedy), column placement, iterative sweeps, compaction, final top-down pass, group bounding boxes, apply layout + horizontal transpose. Single public entry point: organize(canvas, { horizontal }).","x":80,"y":80,"width":420,"height":180,"color":"5"},
+		{"id":"6047a884","type":"text","text":"## PI-01 Wire into plugin UI\nAdd layoutCanvas(file, horizontal) method to the plugin class. Register two ribbon icons (V and H) and two command palette entries in onload(). Use existing vault.read/modify pattern and _writing guard to prevent watcher re-trigger.","x":750,"y":80,"width":420,"height":180,"color":"0"},
+		{"id":"96e4fa48","type":"text","text":"## PI-02 Validate against fixtures\nRun all layout fixtures (dense-dag, cross-group-dependencies, uneven-groups, stress-test) through the JS port. Compare card positions, group bounds and edge ports against the Python reference output.","x":1420,"y":80,"width":420,"height":180,"color":"0"},
+		{"id":"06422223","type":"text","text":"## PI-03 Install & smoke test in Obsidian\nRun node install.js to deploy the updated plugin. Open Project.canvas in Obsidian, click the V and H buttons. Visually verify layout matches the Python tool output.","x":2090,"y":80,"width":420,"height":180,"color":"0"}
+	],
+	"edges":[
+		{"id":"edge-001","fromNode":"554d0f64","fromSide":"right","toNode":"6047a884","toSide":"left"},
+		{"id":"edge-002","fromNode":"6047a884","fromSide":"right","toNode":"96e4fa48","toSide":"left"},
+		{"id":"edge-003","fromNode":"96e4fa48","fromSide":"right","toNode":"06422223","toSide":"left"}
+	]
+}

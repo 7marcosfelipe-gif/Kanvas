@@ -1,0 +1,34 @@
+{
+	"nodes":[
+		{"id":"canvas-errors","type":"text","text":"## Errors\n✓ None","x":-540,"y":-750,"width":380,"height":200,"color":"1"},
+		{"id":"legend","type":"text","text":"## Legend\n🔴 **Red** = To Do (ready)\n⬜ **Gray** = Blocked\n🟠 **Orange** = Doing\n🔵 **Cyan** = Ready to review\n🟢 **Green** = Done\n🟣 **Purple** = Proposed by agent","x":-540,"y":-310,"width":380,"height":230,"color":"0"},
+		{"id":"canvas-warnings","type":"text","text":"## Warnings\n✓ None","x":-540,"y":-530,"width":380,"height":200,"color":"3"},
+		{"id":"group-resear","type":"group","x":20,"y":40,"width":1030,"height":260,"label":"Research"},
+		{"id":"group-develo","type":"group","x":20,"y":820,"width":1030,"height":260,"label":"Development"},
+		{"id":"group-qa","type":"group","x":1130,"y":820,"width":540,"height":1040,"label":"QA"},
+		{"id":"group-releas","type":"group","x":20,"y":1600,"width":1030,"height":1040,"label":"Release"},
+		{"id":"79197596","type":"text","text":"## RE-01 Define board conventions\nClarify the visual flow and dependency semantics the layout should reinforce.","x":570,"y":80,"width":420,"height":180,"color":"6"},
+		{"id":"d0bf6648","type":"text","text":"## RE-02 Audit canvas constraints\nConfirm which node and edge fields the file format actually supports.","x":80,"y":80,"width":420,"height":180,"color":"6"},
+		{"id":"e5183870","type":"text","text":"## DE-01 Implement text sizing pass\nEstimate card dimensions before placement.","x":80,"y":860,"width":420,"height":180,"color":"6"},
+		{"id":"29580363","type":"text","text":"## DE-02 Implement dependency ordering pass\nAssign layers and refine order within lanes.","x":570,"y":860,"width":420,"height":180,"color":"6"},
+		{"id":"737defdd","type":"text","text":"## QA-01 Create edge readability checklist\nList the failure cases a reviewer should look for in the output.","x":1190,"y":860,"width":420,"height":180,"color":"6"},
+		{"id":"ebc46d95","type":"text","text":"## QA-02 Validate layout across mixed dependency boards\nCheck boards that combine long chains, fan-in, and fan-out patterns.","x":1190,"y":1640,"width":420,"height":180,"color":"6"},
+		{"id":"d8f3fd79","type":"text","text":"## REL-01 Package layout command UX\nPrepare the command surface and expected output messaging.","x":80,"y":1640,"width":420,"height":180,"color":"6"},
+		{"id":"8979ae52","type":"text","text":"## REL-02 Prepare demo board for stakeholder review\nAssemble a board that demonstrates improved readability.","x":80,"y":2420,"width":420,"height":180,"color":"6"},
+		{"id":"11275a6e","type":"text","text":"## REL-03 Draft rollout notes\nSummarize what changed and what remains manual.","x":570,"y":2420,"width":420,"height":180,"color":"6"}
+	],
+	"edges":[
+		{"id":"edge-001","fromNode":"d0bf6648","fromSide":"bottom","toNode":"e5183870","toSide":"top"},
+		{"id":"edge-002","fromNode":"79197596","fromSide":"bottom","toNode":"29580363","toSide":"top"},
+		{"id":"edge-003","fromNode":"d0bf6648","fromSide":"bottom","toNode":"29580363","toSide":"top"},
+		{"id":"edge-004","fromNode":"79197596","fromSide":"bottom","toNode":"737defdd","toSide":"top"},
+		{"id":"edge-005","fromNode":"e5183870","fromSide":"bottom","toNode":"ebc46d95","toSide":"top"},
+		{"id":"edge-006","fromNode":"29580363","fromSide":"bottom","toNode":"ebc46d95","toSide":"top"},
+		{"id":"edge-007","fromNode":"737defdd","fromSide":"bottom","toNode":"ebc46d95","toSide":"top"},
+		{"id":"edge-008","fromNode":"e5183870","fromSide":"bottom","toNode":"d8f3fd79","toSide":"top"},
+		{"id":"edge-009","fromNode":"29580363","fromSide":"bottom","toNode":"d8f3fd79","toSide":"top"},
+		{"id":"edge-011","fromNode":"d8f3fd79","fromSide":"bottom","toNode":"8979ae52","toSide":"top"},
+		{"id":"edge-012","fromNode":"ebc46d95","fromSide":"bottom","toNode":"11275a6e","toSide":"top"},
+		{"id":"edge-013","fromNode":"d8f3fd79","fromSide":"bottom","toNode":"11275a6e","toSide":"top"}
+	]
+}

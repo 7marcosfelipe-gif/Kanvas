@@ -1,0 +1,37 @@
+{
+	"nodes":[
+		{"id":"canvas-errors","type":"text","text":"## Errors\n✓ None","x":-540,"y":-750,"width":380,"height":200,"color":"1"},
+		{"id":"legend","type":"text","text":"## Legend\n🔴 **Red** = To Do (ready)\n⬜ **Gray** = Blocked\n🟠 **Orange** = Doing\n🔵 **Cyan** = Ready to review\n🟢 **Green** = Done\n🟣 **Purple** = Proposed by agent","x":-540,"y":-310,"width":380,"height":230,"color":"0"},
+		{"id":"canvas-warnings","type":"text","text":"## Warnings\n✓ None","x":-540,"y":-530,"width":380,"height":200,"color":"3"},
+		{"id":"group-intake","type":"group","x":20,"y":40,"width":540,"height":260,"label":"Intake"},
+		{"id":"group-coreen","type":"group","x":590,"y":40,"width":1680,"height":510,"label":"Core Engine"},
+		{"id":"group-docume","type":"group","x":2300,"y":40,"width":540,"height":510,"label":"Documentation"},
+		{"id":"group-releas","type":"group","x":2870,"y":40,"width":540,"height":260,"label":"Release"},
+		{"id":"1ceb5199","type":"text","text":"## IN-01 Confirm sorting goals\nSet the main readability goals for the first version.","x":80,"y":80,"width":420,"height":180,"color":"6"},
+		{"id":"9e124fc7","type":"text","text":"## CE-01 Estimate card sizes\nFit text without clipping.","x":650,"y":80,"width":420,"height":180,"color":"6"},
+		{"id":"87515db5","type":"text","text":"## CE-02 Assign dependency levels\nPlace tasks into preferred vertical bands.","x":650,"y":330,"width":420,"height":180,"color":"6"},
+		{"id":"8463a3b4","type":"text","text":"## CE-03 Order groups\nDecide the left-to-right lane order.","x":1220,"y":80,"width":420,"height":180,"color":"6"},
+		{"id":"ebf7e446","type":"text","text":"## CE-04 Order tasks within lanes\nReduce crossings in each group.","x":1220,"y":330,"width":420,"height":180,"color":"6"},
+		{"id":"9e3108f6","type":"text","text":"## CE-05 Compact geometry\nRemove excess whitespace while keeping cards legible.","x":1790,"y":80,"width":420,"height":180,"color":"6"},
+		{"id":"278d9bec","type":"text","text":"## CE-06 Optimize edge ports\nPick better card faces for dependency arrows.","x":1790,"y":330,"width":420,"height":180,"color":"6"},
+		{"id":"3aeb0c12","type":"text","text":"## DO-01 Write command notes\nExplain how the layout command should be used.","x":2360,"y":330,"width":420,"height":180,"color":"6"},
+		{"id":"ff070c19","type":"text","text":"## DO-02 Document known limits\nCall out where manual cleanup may still be needed.","x":2360,"y":80,"width":420,"height":180,"color":"6"},
+		{"id":"20ee260e","type":"text","text":"## RE-01 Prepare first manual review build\nBundle the output for visual inspection.","x":2930,"y":80,"width":420,"height":180,"color":"6"}
+	],
+	"edges":[
+		{"id":"edge-001","fromNode":"1ceb5199","fromSide":"right","toNode":"9e124fc7","toSide":"left"},
+		{"id":"edge-002","fromNode":"1ceb5199","fromSide":"right","toNode":"87515db5","toSide":"left"},
+		{"id":"edge-003","fromNode":"87515db5","fromSide":"right","toNode":"8463a3b4","toSide":"left"},
+		{"id":"edge-004","fromNode":"87515db5","fromSide":"right","toNode":"ebf7e446","toSide":"left"},
+		{"id":"edge-005","fromNode":"9e124fc7","fromSide":"right","toNode":"9e3108f6","toSide":"left"},
+		{"id":"edge-006","fromNode":"8463a3b4","fromSide":"right","toNode":"9e3108f6","toSide":"left"},
+		{"id":"edge-007","fromNode":"ebf7e446","fromSide":"right","toNode":"9e3108f6","toSide":"left"},
+		{"id":"edge-008","fromNode":"8463a3b4","fromSide":"right","toNode":"278d9bec","toSide":"left"},
+		{"id":"edge-009","fromNode":"ebf7e446","fromSide":"right","toNode":"278d9bec","toSide":"left"},
+		{"id":"edge-010","fromNode":"9e3108f6","fromSide":"right","toNode":"3aeb0c12","toSide":"left"},
+		{"id":"edge-011","fromNode":"278d9bec","fromSide":"right","toNode":"3aeb0c12","toSide":"left"},
+		{"id":"edge-012","fromNode":"9e3108f6","fromSide":"right","toNode":"ff070c19","toSide":"left"},
+		{"id":"edge-013","fromNode":"3aeb0c12","fromSide":"right","toNode":"20ee260e","toSide":"left"},
+		{"id":"edge-014","fromNode":"ff070c19","fromSide":"right","toNode":"20ee260e","toSide":"left"}
+	]
+}

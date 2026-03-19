@@ -1,0 +1,52 @@
+{
+  "groups": ["Design", "Engine", "Plugin", "Validation"],
+  "tasks": [
+    {
+      "group": "Design",
+      "title": "Define plugin layout surface",
+      "desc": "Map the Python reference into a pure JavaScript layout engine plus a thin Obsidian integration layer. Capture vertical and horizontal layout modes, mutation boundaries, and deterministic tie-break rules."
+    },
+    {
+      "group": "Engine",
+      "title": "Port group graph ordering",
+      "desc": "Port the group dependency graph traversal and ordering logic from organize-dag-groups.py into JavaScript, preserving stable ordering and clean separations between graph analysis and geometry output.",
+      "depends_on": ["Define plugin layout surface"]
+    },
+    {
+      "group": "Engine",
+      "title": "Port task placement sweeps",
+      "desc": "Port card sizing, lane assignment, greedy coloring, and iterative sweep placement for tasks within each group. Keep the engine pure and orientation-aware.",
+      "depends_on": ["Define plugin layout surface"]
+    },
+    {
+      "group": "Engine",
+      "title": "Port edge attachment optimization",
+      "desc": "Port the edge-side selection and routing heuristics so the JavaScript layout preserves readable edge attachment points and deterministic tie-breaks.",
+      "depends_on": ["Port group graph ordering", "Port task placement sweeps"]
+    },
+    {
+      "group": "Plugin",
+      "title": "Add layout commands and ribbon actions",
+      "desc": "Add Obsidian commands and ribbon buttons for vertical and horizontal layout runs, with clear notices and active-canvas validation.",
+      "depends_on": ["Port edge attachment optimization"]
+    },
+    {
+      "group": "Plugin",
+      "title": "Apply layout in place",
+      "desc": "Update the active canvas in place through the plugin without temp files, preserving non-layout metadata and writing only the required node and edge geometry changes.",
+      "depends_on": ["Port edge attachment optimization"]
+    },
+    {
+      "group": "Validation",
+      "title": "Build fixture parity checks",
+      "desc": "Compare the JavaScript layout output against existing fixture canvases and regression boards so the port stays behaviorally close to the Python reference where intended.",
+      "depends_on": ["Port edge attachment optimization"]
+    },
+    {
+      "group": "Validation",
+      "title": "Polish plugin workflow",
+      "desc": "Run manual validation in Obsidian, tighten deterministic reruns, and refine UX copy and command naming before treating the plugin as ready for review.",
+      "depends_on": ["Add layout commands and ribbon actions", "Apply layout in place", "Build fixture parity checks"]
+    }
+  ]
+}
