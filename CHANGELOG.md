@@ -1,5 +1,6 @@
 # Changelog
-
+## v0.3.1 — 2026-03-19
+- Fix `add-dep` incorrectly rejecting valid edges when a pre-existing unrelated cycle existed elsewhere in the graph
 ## v0.3.0 — 2026-03-19
 - Add DAG auto-layout engine to the Canvas Watcher plugin
 - Add vertical and horizontal layout buttons to the Obsidian canvas toolbar
