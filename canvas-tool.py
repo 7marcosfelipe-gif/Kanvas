@@ -32,7 +32,10 @@ Proposals (creates purple cards):
   batch                           Bulk-add from JSON on stdin
 
 Editing:
-  edit <TASK-ID> "<TEXT>"          Update description (must be orange)
+  edit <TASK-ID> "<TEXT>"          Replace description (must be orange)
+  edit <TASK-ID> --append "<TEXT>" Append to existing description
+  edit <TASK-ID> --stdin           Read new text from stdin
+  edit <TASK-ID> --file <PATH>    Read new text from a file
   add-dep <FROM-ID> <TO-ID>       Add dependency (rejects if cycle)
 
 Maintenance:
@@ -1142,6 +1145,28 @@ def cmd_edit(canvas, args, path):
     if node.get("color") != "2":
         error(f"Task {args.task_id} is {color_name(node)}, must be orange to edit")
 
+    # Resolve new text from positional arg, --stdin, or --file
+    sources = [args.new_text, args.stdin, args.file]
+    provided = sum(1 for s in sources if s)
+    if provided == 0:
+        error("Provide new text as a positional argument, --stdin, or --file <path>")
+    if provided > 1:
+        error("Use only one of: positional text, --stdin, --file")
+
+    if args.stdin:
+        import io as _io
+        new_text = sys.stdin.read()
+    elif args.file:
+        try:
+            with open(args.file, "r", encoding="utf-8") as fh:
+                new_text = fh.read()
+        except OSError as exc:
+            error(f"Cannot read file '{args.file}': {exc}")
+    else:
+        new_text = args.new_text
+
+    new_text = new_text.rstrip("\n\r")
+
     text = node.get("text", "")
     lines = text.split("\n")
     if lines and lines[0].startswith("## "):
@@ -1149,11 +1174,21 @@ def cmd_edit(canvas, args, path):
     else:
         heading = lines[0] if lines else ""
 
-    new_text = args.new_text
-    node["text"] = f"{heading}\n{new_text}"
+    if args.append:
+        # Preserve existing body and append
+        body = "\n".join(lines[1:]) if len(lines) > 1 else ""
+        body = body.rstrip()
+        if body:
+            node["text"] = f"{heading}\n{body}\n\n{new_text}"
+        else:
+            node["text"] = f"{heading}\n{new_text}"
+    else:
+        node["text"] = f"{heading}\n{new_text}"
+
     save_canvas(path, canvas)
     tid = task_id_str(node) or node.get("id")
-    print(f"Updated description for {tid}")
+    mode = "Appended to" if args.append else "Updated"
+    print(f"{mode} description for {tid}")
 
 
 def cmd_add_dep(canvas, args, path):
@@ -1356,7 +1391,14 @@ def build_parser():
     # Edit
     p_edit = sub.add_parser("edit", help="Edit task description")
     p_edit.add_argument("task_id", help="Task ID")
-    p_edit.add_argument("new_text", help="New description text")
+    p_edit.add_argument("new_text", nargs="?", default=None,
+                        help="New description text (positional)")
+    p_edit.add_argument("--stdin", action="store_true", default=False,
+                        help="Read new text from stdin (avoids shell quoting issues)")
+    p_edit.add_argument("--file", default=None, metavar="PATH",
+                        help="Read new text from a file")
+    p_edit.add_argument("--append", action="store_true", default=False,
+                        help="Append text below existing description instead of replacing")
 
     p_dep = sub.add_parser("add-dep", help="Add dependency edge")
     p_dep.add_argument("from_id", help="Blocker task ID")

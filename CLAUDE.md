@@ -38,10 +38,18 @@ Execute the task. If you discover subtasks, propose them:
 python canvas-tool.py "Project.canvas" propose Development "Subtask title" "Description" --depends-on DV-01
 ```
 
-Update notes on your in-progress task:
+Append notes on your in-progress task (preserves the original description):
 
 ```bash
-python canvas-tool.py "Project.canvas" edit <TASK-ID> "Updated description with findings."
+python canvas-tool.py "Project.canvas" edit <TASK-ID> --append "### Changes\n- Did X\n- Did Y"
+```
+
+For multiline text, prefer `--stdin` or `--file` to avoid shell quoting issues:
+
+```bash
+echo "### Changes
+- Did X
+- Did Y" | python canvas-tool.py "Project.canvas" edit <TASK-ID> --append --stdin
 ```
 
 ### 4. Finish the task
@@ -51,6 +59,7 @@ python canvas-tool.py "Project.canvas" finish <TASK-ID>   # orange → cyan
 ```
 
 Tell the user what was done. Do NOT attempt to set the card green — only the human does that.
+Always append a summary of changes to the task before finishing (use `edit --append`).
 
 ### 5. Repeat
 
@@ -70,7 +79,7 @@ python canvas-tool.py "Project.canvas" ready
 - **Start** a task: `start <ID>` (red → orange)
 - **Finish** a task: `finish <ID>` (orange → cyan)
 - **Pause** a task: `pause <ID>` (orange → red)
-- **Edit** task text: `edit <ID> "<text>"` (only orange tasks)
+- **Edit** task text: `edit <ID> "<text>"` or `edit <ID> --append --stdin` (only orange tasks)
 - **Add dependencies**: `add-dep <FROM> <TO>`
 
 ## What you CANNOT do

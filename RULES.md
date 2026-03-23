@@ -91,7 +91,7 @@ The human can:
 - **Start a task**: `start <TASK-ID>` (red → orange)
 - **Finish a task**: `finish <TASK-ID>` (orange → cyan)
 - **Pause a task**: `pause <TASK-ID>` (orange → red)
-- **Edit task text**: `edit <TASK-ID> "<text>"` (only orange/in-progress tasks)
+- **Edit task text**: `edit <TASK-ID> "<text>"` or `edit <TASK-ID> --append --stdin` (only orange/in-progress tasks)
 - **Add dependencies**: `add-dep <FROM> <TO>` (with cycle detection)
 
 ### The agent CANNOT:
@@ -184,9 +184,15 @@ If multiple tasks are ready, ask the human which to prioritize.
 ```bash
 python canvas-tool.py "Project.canvas" propose Development "Subtask title" "Description" --depends-on DV-01
 ```
-- Update notes on the in-progress task:
+- Append notes on the in-progress task (preserves the original description):
 ```bash
-python canvas-tool.py "Project.canvas" edit <TASK-ID> "Updated description with findings."
+python canvas-tool.py "Project.canvas" edit <TASK-ID> --append "### Changes\n- Did X\n- Did Y"
+```
+- For multiline text, prefer `--stdin` or `--file` to avoid shell quoting issues:
+```bash
+echo "### Changes
+- Did X
+- Did Y" | python canvas-tool.py "Project.canvas" edit <TASK-ID> --append --stdin
 ```
 
 ### 4. Complete
@@ -194,6 +200,7 @@ python canvas-tool.py "Project.canvas" edit <TASK-ID> "Updated description with 
 python canvas-tool.py "Project.canvas" finish <TASK-ID>
 ```
 Inform the human the task is done. Do NOT attempt to set the card green.
+Always append a summary of changes to the task before finishing (use `edit --append`).
 
 ### 5. Repeat
 Once the human marks the task green, check for newly unblocked tasks:
@@ -258,7 +265,7 @@ Tasks in a batch can reference earlier tasks by title (case-insensitive) or by e
 
 | Command | Args | Rejects if |
 |---|---|---|
-| `edit` | `<TASK-ID> "<NEW-TEXT>"` | Not orange |
+| `edit` | `<TASK-ID> "<NEW-TEXT>"` or `--append`, `--stdin`, `--file <PATH>` | Not orange |
 | `add-dep` | `<FROM-ID> <TO-ID>` | Would create circular dependency |
 
 ### Maintenance commands
