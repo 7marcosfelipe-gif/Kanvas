@@ -1303,8 +1303,8 @@ def cmd_init(target_dir, install_plugin=True):
     # 1. Install skill into platform directories
     #    Always: .agents/ (open standard — Codex, Gemini, Cursor)
     #    Plus any platform-specific dirs that already exist
-    platform_dirs = [".agents"]
-    for pdir in (".claude", ".cursor", ".gemini"):
+    platform_dirs = [".agents", ".claude"]
+    for pdir in (".cursor", ".gemini"):
         if os.path.isdir(os.path.join(target, pdir)):
             platform_dirs.append(pdir)
 
