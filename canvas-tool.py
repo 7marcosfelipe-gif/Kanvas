@@ -7,6 +7,10 @@ workflow rules (valid color transitions, dependency cycle detection, blocked
 state management) so agents cannot make invalid changes.
 
 Usage: python canvas-tool.py "<file>.canvas" <command> [args]
+       python canvas-tool.py init [TARGET_DIR] [--no-plugin]
+
+Setup:
+  init [TARGET_DIR] [--no-plugin]   Initialize Kanvas in a project directory
 
 Read-only commands:
   status                          Board overview (groups, states, anomalies)
@@ -61,6 +65,7 @@ import os
 import re
 import argparse
 import uuid
+import shutil
 from collections import defaultdict
 
 # ---------------------------------------------------------------------------
@@ -268,32 +273,24 @@ def build_adj(canvas):
 
 
 def has_cycle_with_edge(canvas, from_id, to_id):
-    """Check if adding edge from_id → to_id would create a cycle (DFS)."""
+    """Check if adding edge from_id -> to_id would create a cycle.
+
+    Only checks whether to_id can already reach from_id through existing
+    edges.  If it can, adding from_id -> to_id would close a loop.
+    """
+    if from_id == to_id:
+        return True
     adj = build_adj(canvas)
-    adj[from_id].append(to_id)
     visited = set()
-    rec_stack = set()
-
-    def dfs(nid):
+    stack = [to_id]
+    while stack:
+        nid = stack.pop()
+        if nid == from_id:
+            return True
+        if nid in visited:
+            continue
         visited.add(nid)
-        rec_stack.add(nid)
-        for neighbor in adj.get(nid, []):
-            if neighbor not in visited:
-                if dfs(neighbor):
-                    return True
-            elif neighbor in rec_stack:
-                return True
-        rec_stack.discard(nid)
-        return False
-
-    # Check from the from_id
-    all_nodes = set(adj.keys())
-    for v in adj.values():
-        all_nodes.update(v)
-    for nid in all_nodes:
-        if nid not in visited:
-            if dfs(nid):
-                return True
+        stack.extend(adj.get(nid, []))
     return False
 
 
@@ -1224,6 +1221,92 @@ def cmd_normalize(canvas, _args, path):
 # ---------------------------------------------------------------------------
 
 
+# ---------------------------------------------------------------------------
+# Init command — sets up Kanvas in a target project directory
+# ---------------------------------------------------------------------------
+
+def cmd_init(target_dir, install_plugin=True):
+    """Initialize Kanvas in a project directory.
+
+    Copies the necessary files and optionally installs the Obsidian plugin.
+    """
+    target = os.path.abspath(target_dir)
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    if not os.path.isdir(target):
+        error(f"Target directory does not exist: {target}")
+
+    print(f"Initializing Kanvas in: {target}\n")
+    copied = []
+
+    # 1. Copy canvas-tool.py
+    src_tool = os.path.join(script_dir, "canvas-tool.py")
+    dst_tool = os.path.join(target, "canvas-tool.py")
+    if os.path.abspath(src_tool) != os.path.abspath(dst_tool):
+        shutil.copy2(src_tool, dst_tool)
+        copied.append("canvas-tool.py")
+
+    # 2. Copy agent instruction files
+    for agent_file in ("CLAUDE.md", "AGENTS.md"):
+        src = os.path.join(script_dir, agent_file)
+        if os.path.isfile(src):
+            shutil.copy2(src, os.path.join(target, agent_file))
+            copied.append(agent_file)
+
+    # 3. Copy RULES.md
+    src_rules = os.path.join(script_dir, "RULES.md")
+    if os.path.isfile(src_rules):
+        shutil.copy2(src_rules, os.path.join(target, "RULES.md"))
+        copied.append("RULES.md")
+
+    # 4. Copy blank canvas template if no .canvas file exists yet
+    existing_canvas = [f for f in os.listdir(target) if f.endswith(".canvas")]
+    if not existing_canvas:
+        src_blank = os.path.join(script_dir, "examples", "blank.canvas")
+        if os.path.isfile(src_blank):
+            shutil.copy2(src_blank, os.path.join(target, "Project.canvas"))
+            copied.append("Project.canvas (from blank template)")
+
+    # 5. Install Canvas Watcher plugin if .obsidian/ exists and not skipped
+    obsidian_dir = os.path.join(target, ".obsidian")
+    if not install_plugin:
+        print("  Skipping plugin install (--no-plugin).\n")
+    elif os.path.isdir(obsidian_dir):
+        plugin_src = os.path.join(script_dir, "canvas-watcher-plugin")
+        plugin_dst = os.path.join(obsidian_dir, "plugins", "canvas-watcher")
+        os.makedirs(plugin_dst, exist_ok=True)
+
+        for fname in ("main.js", "manifest.json"):
+            src = os.path.join(plugin_src, fname)
+            if os.path.isfile(src):
+                shutil.copy2(src, os.path.join(plugin_dst, fname))
+
+        # Register in community-plugins.json
+        cp_path = os.path.join(obsidian_dir, "community-plugins.json")
+        plugins = []
+        if os.path.isfile(cp_path):
+            with open(cp_path, "r", encoding="utf-8") as f:
+                try:
+                    plugins = json.load(f)
+                except json.JSONDecodeError:
+                    plugins = []
+        if "canvas-watcher" not in plugins:
+            plugins.append("canvas-watcher")
+            with open(cp_path, "w", encoding="utf-8") as f:
+                json.dump(plugins, f, indent=2)
+
+        copied.append("Canvas Watcher plugin (installed + registered)")
+    else:
+        print("  Note: No .obsidian/ folder found — skipping plugin install.")
+        print("  Open the folder in Obsidian first, then re-run init to install the plugin.\n")
+
+    if copied:
+        print("  Copied:")
+        for item in copied:
+            print(f"    ✓ {item}")
+    print("\nDone. Open the folder in Obsidian and start planning!")
+
+
 def build_parser():
     """Build the argparse parser."""
     parser = argparse.ArgumentParser(
@@ -1291,6 +1374,15 @@ def main():
         import io
         sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
         sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
+
+    # Handle 'init' before normal parsing (it doesn't need a canvas file)
+    if len(sys.argv) >= 2 and sys.argv[1] == "init":
+        init_args = sys.argv[2:]
+        no_plugin = "--no-plugin" in init_args
+        positional = [a for a in init_args if not a.startswith("--")]
+        target = positional[0] if positional else "."
+        cmd_init(target, install_plugin=not no_plugin)
+        return
 
     parser = build_parser()
     args = parser.parse_args()
